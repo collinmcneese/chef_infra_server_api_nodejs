@@ -1,6 +1,13 @@
 # chef_infra_server_api_nodejs
 
-Reference repository for interacting with a Chef Infra Server API using Node.js.  Other community packages exist which reference how to do this with Node.js but they make use of external packages for different parts of the operation.  The purpose of this repository is to use only native Node.js 12+ functions to communicate with a Chef Infra Server API, allowing for easily portable code which can be used as a plugin for other operations.
+Reference repository for interacting with a Chef Infra Server API using Node.js.
+
+Other community packages exist which reference how to do this with Node.js but they make use of external packages for different parts of the operation.  The purpose of this repository is to use only native Node.js 12+ functions to communicate with a Chef Infra Server API, allowing for easily portable code which can be used as a plugin for other operations.
+
+This repo currently :
+
+- Is for example purposes to show functionality
+- Is functional rather than beautiful - needs a bit more cleanup performed still to optimize the code and make it human-friendly
 
 ## app.js
 
