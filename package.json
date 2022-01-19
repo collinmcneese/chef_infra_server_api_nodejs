@@ -1,0 +1,15 @@
+{
+  "name": "chef_infra_server_api_nodejs",
+  "version": "0.0.1",
+  "description": "Reference repository for interacting with a Chef Infra Server API using Node.js",
+  "main": "app.js",
+  "scripts": {
+    "test": "eslint --ignore-path .eslintignore ."
+  },
+  "author": "Collin McNeese",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "eslint": "^8.6.0",
+    "eslint-config-strongloop": "^2.1.0"
+  }
+}
