@@ -42,6 +42,28 @@ function chefInfraAPIHeaders(auth, config) {
   return headers;
 };
 
+// HTTPS Request Function used by exports
+function httpsRequest(httpsRequestOptions, bodyData) {
+  let data = '';
+  var req = https.request(httpsRequestOptions, (res) => {
+    res.on('data', chunk => {
+      data += chunk;
+    });
+    res.on('end', () => {
+      console.log(JSON.parse(data));
+      return JSON.parse(data);
+    });
+  });
+
+  req.on('error', (e) => {
+    console.error(e);
+  });
+
+  req.write(JSON.stringify(bodyData));
+
+  req.end();
+}
+
 // Client Functions
 // https://docs.chef.io/server/api_chef_server/#clients
 exports.ClientGet = function(client, chef_api_server, chef_api_org, chef_api_client_name, chef_api_client_key) {
@@ -64,22 +86,7 @@ exports.ClientGet = function(client, chef_api_server, chef_api_org, chef_api_cli
     }),
   };
 
-  let data = '';
-  var req = https.request(httpsRequestOptions, (res) => {
-    res.on('data', chunk => {
-      data += chunk;
-    });
-    res.on('end', () => {
-      console.log(JSON.parse(data));
-      return JSON.parse(data);
-    });
-  });
-
-  req.on('error', (e) => {
-    console.error(e);
-  });
-
-  req.end();
+  httpsRequest(httpsRequestOptions, '');
 };
 
 exports.ClientCreate = function(name, chef_api_server, chef_api_org, chef_api_client_name, chef_api_client_key) {
@@ -108,24 +115,7 @@ exports.ClientCreate = function(name, chef_api_server, chef_api_org, chef_api_cl
     }),
   };
 
-  let data = '';
-  var req = https.request(httpsRequestOptions, (res) => {
-    res.on('data', chunk => {
-      data += chunk;
-    });
-    res.on('end', () => {
-      console.log(JSON.parse(data));
-      return JSON.parse(data);
-    });
-  });
-
-  req.on('error', (e) => {
-    console.error(e);
-  });
-
-  req.write(JSON.stringify(bodyData));
-
-  req.end();
+  httpsRequest(httpsRequestOptions, bodyData);
 };
 
 exports.ClientDelete = function(name, chef_api_server, chef_api_org, chef_api_client_name, chef_api_client_key) {
@@ -148,22 +138,7 @@ exports.ClientDelete = function(name, chef_api_server, chef_api_org, chef_api_cl
     }),
   };
 
-  let data = '';
-  var req = https.request(httpsRequestOptions, (res) => {
-    res.on('data', chunk => {
-      data += chunk;
-    });
-    res.on('end', () => {
-      console.log(JSON.parse(data));
-      return JSON.parse(data);
-    });
-  });
-
-  req.on('error', (e) => {
-    console.error(e);
-  });
-
-  req.end();
+  httpsRequest(httpsRequestOptions, '');
 };
 
 // Node functions
@@ -188,26 +163,11 @@ exports.NodeGet = function(name, chef_api_server, chef_api_org, chef_api_client_
     }),
   };
 
-  let data = '';
-  var req = https.request(httpsRequestOptions, (res) => {
-    res.on('data', chunk => {
-      data += chunk;
-    });
-    res.on('end', () => {
-      console.log(JSON.parse(data));
-      return JSON.parse(data);
-    });
-  });
-
-  req.on('error', (e) => {
-    console.error(e);
-  });
-
-  req.end();
+  httpsRequest(httpsRequestOptions, '');
 };
 
 exports.NodeCreate = function(name, runlist, chef_api_server, chef_api_org, chef_api_client_name, chef_api_client_key) {
-  var chef_api_server_url = url.parse('https://' + chef_api_server + '/organizations/' + chef_api_org + '/clients');
+  var chef_api_server_url = url.parse('https://' + chef_api_server + '/organizations/' + chef_api_org + '/nodes');
   var bodyData = {
     name: name,
     json_class: 'Chef::Node',
@@ -238,24 +198,7 @@ exports.NodeCreate = function(name, runlist, chef_api_server, chef_api_org, chef
     }),
   };
 
-  let data = '';
-  var req = https.request(httpsRequestOptions, (res) => {
-    res.on('data', chunk => {
-      data += chunk;
-    });
-    res.on('end', () => {
-      console.log(JSON.parse(data));
-      return JSON.parse(data);
-    });
-  });
-
-  req.on('error', (e) => {
-    console.error(e);
-  });
-
-  req.write(JSON.stringify(bodyData));
-
-  req.end();
+  httpsRequest(httpsRequestOptions, bodyData);
 };
 
 exports.NodeDelete = function(name, chef_api_server, chef_api_org, chef_api_client_name, chef_api_client_key) {
@@ -278,20 +221,5 @@ exports.NodeDelete = function(name, chef_api_server, chef_api_org, chef_api_clie
     }),
   };
 
-  let data = '';
-  var req = https.request(httpsRequestOptions, (res) => {
-    res.on('data', chunk => {
-      data += chunk;
-    });
-    res.on('end', () => {
-      console.log(JSON.parse(data));
-      return JSON.parse(data);
-    });
-  });
-
-  req.on('error', (e) => {
-    console.error(e);
-  });
-
-  req.end();
+  httpsRequest(httpsRequestOptions, '');
 };
