@@ -19,12 +19,12 @@ Example using `app.js`:
 const app = require('./app');
 
 // Client Functions
-app.ClientCreate('object_name', 'infraserver.fqdn', 'organization_name', 'chef_api_client_name', 'chef_api_client_key');
-app.ClientGet('object_name', 'infraserver.fqdn', 'organization_name', 'chef_api_client_name', 'chef_api_client_key');
-app.ClientDelete('object_name', 'infraserver.fqdn', 'organization_name', 'chef_api_client_name', 'chef_api_client_key');
+app.ClientCreate('object_name', 'infraserver.fqdn', 'organization_name', 'chef_api_client_name', 'chef_api_client_key', function(response) { console.log(JSON.stringify(response)); });
+app.ClientGet('object_name', 'infraserver.fqdn', 'organization_name', 'chef_api_client_name', 'chef_api_client_key', function(response) { console.log(JSON.stringify(response)); });
+app.ClientDelete('object_name', 'infraserver.fqdn', 'organization_name', 'chef_api_client_name', 'chef_api_client_key', function(response) { console.log(JSON.stringify(response)); });
 
 // Node Functions
-app.NodeCreate('object_name', {policy_name: 'some_policy', policy_group: 'some_group'}, 'infraserver.fqdn', 'organization_name', 'chef_api_client_name', 'chef_api_client_key');
-app.NodeGet('object_name', 'infraserver.fqdn', 'organization_name', 'chef_api_client_name', 'chef_api_client_key');
-app.NodeDelete('object_name', 'infraserver.fqdn', 'organization_name', 'chef_api_client_name', 'chef_api_client_key');
+app.NodeCreate('object_name', {policy_name: 'some_policy', policy_group: 'some_group'}, 'infraserver.fqdn', 'organization_name', 'chef_api_client_name', 'chef_api_client_key', function(response) { console.log(JSON.stringify(response)); });
+app.NodeGet('object_name', 'infraserver.fqdn', 'organization_name', 'chef_api_client_name', 'chef_api_client_key', function(response) { console.log(JSON.stringify(response)); });
+app.NodeDelete('object_name', 'infraserver.fqdn', 'organization_name', 'chef_api_client_name', 'chef_api_client_key', function(response) { console.log(JSON.stringify(response)); });
 ```

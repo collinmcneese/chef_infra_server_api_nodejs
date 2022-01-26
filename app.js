@@ -43,15 +43,15 @@ function chefInfraAPIHeaders(auth, config) {
 };
 
 // HTTPS Request Function used by exports
-function httpsRequest(httpsRequestOptions, bodyData) {
+function httpsRequest(httpsRequestOptions, bodyData, callback) {
   let data = '';
   var req = https.request(httpsRequestOptions, (res) => {
     res.on('data', chunk => {
       data += chunk;
     });
     res.on('end', () => {
-      console.log(JSON.parse(data));
-      return JSON.parse(data);
+      // console.log(JSON.parse(data));
+      callback(JSON.parse(data));
     });
   });
 
@@ -66,7 +66,7 @@ function httpsRequest(httpsRequestOptions, bodyData) {
 
 // Client Functions
 // https://docs.chef.io/server/api_chef_server/#clients
-exports.ClientGet = function(client, chef_api_server, chef_api_org, chef_api_client_name, chef_api_client_key) {
+exports.ClientGet = function(client, chef_api_server, chef_api_org, chef_api_client_name, chef_api_client_key, callback) {
   var chef_api_server_url = url.parse('https://' + chef_api_server + '/organizations/' + chef_api_org + '/clients/' + client);
 
   var httpsRequestOptions = {
@@ -86,10 +86,14 @@ exports.ClientGet = function(client, chef_api_server, chef_api_org, chef_api_cli
     }),
   };
 
-  httpsRequest(httpsRequestOptions, '');
+  httpsRequest(httpsRequestOptions, '', function(response){
+    // console.log(response);
+    callback(response);
+  });
+
 };
 
-exports.ClientCreate = function(name, chef_api_server, chef_api_org, chef_api_client_name, chef_api_client_key) {
+exports.ClientCreate = function(name, chef_api_server, chef_api_org, chef_api_client_name, chef_api_client_key, callback) {
   var chef_api_server_url = url.parse('https://' + chef_api_server + '/organizations/' + chef_api_org + '/clients');
   var bodyData = {
     name: name,
@@ -115,10 +119,13 @@ exports.ClientCreate = function(name, chef_api_server, chef_api_org, chef_api_cl
     }),
   };
 
-  httpsRequest(httpsRequestOptions, bodyData);
+  httpsRequest(httpsRequestOptions, bodyData, function(response){
+    // console.log(response);
+    callback(response);
+  });
 };
 
-exports.ClientDelete = function(name, chef_api_server, chef_api_org, chef_api_client_name, chef_api_client_key) {
+exports.ClientDelete = function(name, chef_api_server, chef_api_org, chef_api_client_name, chef_api_client_key, callback) {
   var chef_api_server_url = url.parse('https://' + chef_api_server + '/organizations/' + chef_api_org + '/clients/' + name);
 
   var httpsRequestOptions = {
@@ -138,12 +145,15 @@ exports.ClientDelete = function(name, chef_api_server, chef_api_org, chef_api_cl
     }),
   };
 
-  httpsRequest(httpsRequestOptions, '');
+  httpsRequest(httpsRequestOptions, '', function(response){
+    // console.log(response);
+    callback(response);
+  });
 };
 
 // Node functions
 // https://docs.chef.io/server/api_chef_server/#nodes
-exports.NodeGet = function(name, chef_api_server, chef_api_org, chef_api_client_name, chef_api_client_key) {
+exports.NodeGet = function(name, chef_api_server, chef_api_org, chef_api_client_name, chef_api_client_key, callback) {
   var chef_api_server_url = url.parse('https://' + chef_api_server + '/organizations/' + chef_api_org + '/nodes/' + name);
 
   var httpsRequestOptions = {
@@ -163,10 +173,13 @@ exports.NodeGet = function(name, chef_api_server, chef_api_org, chef_api_client_
     }),
   };
 
-  httpsRequest(httpsRequestOptions, '');
+  httpsRequest(httpsRequestOptions, '', function(response){
+    // console.log(response);
+    callback(response);
+  });
 };
 
-exports.NodeCreate = function(name, runlist, chef_api_server, chef_api_org, chef_api_client_name, chef_api_client_key) {
+exports.NodeCreate = function(name, runlist, chef_api_server, chef_api_org, chef_api_client_name, chef_api_client_key, callback) {
   var chef_api_server_url = url.parse('https://' + chef_api_server + '/organizations/' + chef_api_org + '/nodes');
   var bodyData = {
     name: name,
@@ -198,10 +211,13 @@ exports.NodeCreate = function(name, runlist, chef_api_server, chef_api_org, chef
     }),
   };
 
-  httpsRequest(httpsRequestOptions, bodyData);
+  httpsRequest(httpsRequestOptions, bodyData, function(response){
+    // console.log(response);
+    callback(response);
+  });
 };
 
-exports.NodeDelete = function(name, chef_api_server, chef_api_org, chef_api_client_name, chef_api_client_key) {
+exports.NodeDelete = function(name, chef_api_server, chef_api_org, chef_api_client_name, chef_api_client_key, callback) {
   var chef_api_server_url = url.parse('https://' + chef_api_server + '/organizations/' + chef_api_org + '/nodes/' + name);
 
   var httpsRequestOptions = {
@@ -221,5 +237,8 @@ exports.NodeDelete = function(name, chef_api_server, chef_api_org, chef_api_clie
     }),
   };
 
-  httpsRequest(httpsRequestOptions, '');
+  httpsRequest(httpsRequestOptions, '', function(response){
+    // console.log(response);
+    callback(response);
+  });
 };
