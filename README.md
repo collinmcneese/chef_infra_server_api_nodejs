@@ -28,3 +28,7 @@ app.NodeCreate('object_name', {policy_name: 'some_policy', policy_group: 'some_g
 app.NodeGet('object_name', 'infraserver.fqdn', 'organization_name', 'chef_api_client_name', 'chef_api_client_key', function(response) { console.log(JSON.stringify(response)); });
 app.NodeDelete('object_name', 'infraserver.fqdn', 'organization_name', 'chef_api_client_name', 'chef_api_client_key', function(response) { console.log(JSON.stringify(response)); });
 ```
+
+## vRA_handler.js
+
+Reference file to show using a nodeJS custom action from vRealize 8 for interacting with a Chef Infra Server API
