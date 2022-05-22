@@ -7,7 +7,7 @@
     "test": "eslint --ignore-path .eslintignore ."
   },
   "author": "Collin McNeese",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "devDependencies": {
     "eslint": "^8.11.0",
     "eslint-config-strongloop": "^2.1.0"
